@@ -1,0 +1,14 @@
+/* margin */
+@value cancelBottomMargin: 0;
+
+.mediumBottomMargin {
+   margin-bottom: 1.2rem;
+}
+
+.largeBottomMargin {
+   margin-bottom: 2rem;
+}
+
+.littleLeftMinusMargin {
+   margin-left: -3px;
+}

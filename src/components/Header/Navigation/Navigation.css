@@ -1,0 +1,66 @@
+.Button {
+   display: inline-block;
+   margin-right: 2rem;
+   transition: 0.3s all;
+   text-align: center;
+   transform: translateY(5px);
+}
+
+.Button button {
+   font-family: 'Taipei';
+   font-size: 1.8rem;
+   color: #999999;
+   letter-spacing: 0.4rem;
+   text-indent: 0.4rem;
+}
+
+.Button div {
+   display: block;
+   width: 0;
+   height: 2px;
+   background-color: transparent;
+   margin: 5px auto;
+   transition: 0.2s all;
+}
+
+.Red:hover button {
+   color: #cc3333;
+   font-weight: bold;
+   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.Red:hover div {
+   background-color: #cc3333;
+   width: 50%;
+}
+
+.Blue:hover button {
+   color: #3366cc;
+   font-weight: bold;
+   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.Blue:hover div {
+   background-color: #3366cc;
+   width: 50%;
+}
+
+.Purple:hover button {
+   color: #6633cc;
+   font-weight: bold;
+   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.Purple:hover div {
+   background-color: #6633cc;
+   width: 50%;
+}
+
+.Button:last-of-type {
+   margin-right: 0;
+}
+
+.Button:hover {
+   font-weight: bold;
+   transform: scale(1.05) translateY(3px);
+}

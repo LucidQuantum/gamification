@@ -1,0 +1,9 @@
+.title {
+   composes: pixelTitle from '../../../../abstracts/typos.css';
+   composes: red from '../../../../abstracts/colors.css';
+   composes: mediumBottomMargin from '../../../../abstracts/layout.css';
+}
+
+.value {
+   composes: pixelName from '../../../../abstracts/typos.css';
+}

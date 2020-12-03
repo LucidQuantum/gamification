@@ -1,0 +1,73 @@
+/************** 
+字体导入
+**************/
+@font-face {
+   font-family: 'pixel';
+
+   src: url('../assets/pixel.woff2') format('woff2'); /* Modern Browsers */
+}
+
+@font-face {
+   font-family: 'taipeiBold';
+
+   src: url('../assets/TaipeiBold.woff2') format('woff2'); /* Modern Browsers */
+}
+
+@font-face {
+   font-family: 'taipeiLight';
+
+   src: url('../assets/TaipeiLight.woff2') format('woff2'); /* Modern Browsers */
+}
+
+@font-face {
+   font-family: 'taipeiRegular';
+
+   src: url('../assets/TaipeiRegular.woff2') format('woff2'); /* Modern Browsers */
+}
+
+/************** 
+字体大小
+**************/
+.mediumSize {
+   font-size: 1.5rem;
+}
+
+.largeSize {
+   font-size: 2rem;
+}
+
+.xlargeSize {
+   font-size: 3rem;
+}
+
+/************** 
+字间距
+**************/
+.xsmallSpace {
+   letter-spacing: 2px;
+   text-indent: 2px;
+}
+
+.smallSpace {
+   letter-spacing: 3px;
+   text-indent: 3px;
+}
+
+/***************************** 
+常用字体样式
+*****************************/
+.pixelTitle {
+   font-family: 'pixel';
+   background-color: transparent;
+   composes: largeSize xsmallSpace;
+}
+
+.pixelName {
+   font-family: 'pixel';
+   composes: xlargeSize;
+}
+
+.pixelDescription {
+   font-family: 'pixel';
+   composes: mediumSize smallSpace;
+}

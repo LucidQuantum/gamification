@@ -1,38 +1,76 @@
-.App {
-  text-align: center;
+*,
+*::before,
+*::after {
+   margin: 0;
+   padding: 0;
+   /* content-box是默认，偶尔会更有用 */
+   box-sizing: border-box;
+   background-color: #f9f3ec;
+   -webkit-font-smoothing: subpixel-antialiased;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+   /* 1rem = 10px */
+   font-size: 62.5%;
+   height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* <input>不会自动继承，所以需要手动设置一下 */
+input {
+   font-family: inherit;
+   font-size: inherit;
+   color: inherit;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* 去除下划线 */
+a:link,
+a:visited {
+   text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+   border: none;
+   font-size: inherit;
+   background-color: transparent;
+   cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:focus {
+   outline: none;
+}
+
+/***************************** 
+字体部分和全局字体
+*****************************/
+
+/* 通用大字体 */
+h1 {
+   font-family: 'Taipei';
+   font-weight: 700;
+   font-size: 2.5rem;
+}
+
+/* pixel标题 */
+h2 {
+   font-family: 'pixel';
+   font-size: 3rem;
+}
+
+/* pixel中号字体 */
+h3 {
+   background-color: transparent;
+   font-family: 'pixel';
+   font-size: 2rem;
+   letter-spacing: 2px;
+   text-indent: 2px;
+}
+
+/* pixel解释字体 */
+h4 {
+   font-family: 'pixel';
+   font-weight: 500;
+   font-size: 1.5rem;
+   color: #999999;
+   letter-spacing: 3px;
+   text-indent: 3px;
 }

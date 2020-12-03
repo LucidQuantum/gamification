@@ -1,0 +1,27 @@
+.container {
+   composes: largeBottomMargin from '../../../abstracts/layout.css';
+}
+
+@value cancelBottomMargin from '../../../abstracts/layout.css';
+.container:last-of-type {
+   margin-bottom: cancelBottomMargin;
+}
+
+.text {
+   composes: mediumBottomMargin littleLeftMinusMargin from '../../../abstracts/layout.css';
+   composes: pixelTitle from '../../../abstracts/typos.css';
+}
+
+.red {
+   composes: text;
+   composes: red from '../../../abstracts/colors.css';
+}
+
+.blue {
+   composes: text;
+   composes: blue from '../../../abstracts/colors.css';
+}
+.purple {
+   composes: text;
+   composes: purple from '../../../abstracts/colors.css';
+}

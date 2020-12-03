@@ -1,0 +1,17 @@
+.name {
+   composes: pixelName from '../../../../abstracts/typos.css';
+   composes: mediumBottomMargin from '../../../../abstracts/layout.css';
+}
+
+.description {
+   composes: pixelDescription from '../../../../abstracts/typos.css';
+   composes: grey from '../../../../abstracts/colors.css';
+}
+
+.NameDisplay {
+   text-align: center;
+}
+
+.NameDisplay h2 {
+   margin-bottom: 1.5rem;
+}

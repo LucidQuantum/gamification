@@ -1,0 +1,45 @@
+@value whiteColor, redColor from '../../../abstracts/colors.css';
+@value lightBoxShadow from '../../../abstracts/effects.css';
+
+.text {
+   composes: pixelTitle from '../../../abstracts/typos.css';
+}
+
+.button {
+   border: 2px solid #999999;
+   width: 14rem;
+   height: 5rem;
+   composes: grey from '../../../abstracts/colors.css';
+   transition: 0.2s all;
+}
+
+.button:hover {
+   transform: translateY(-3px);
+   box-shadow: lightBoxShadow;
+   border-color: transparent;
+   color: whiteColor;
+}
+
+.red {
+   composes: button;
+}
+
+.red:hover {
+   background-color: redColor;
+}
+
+.blue {
+   composes: button;
+}
+
+.blue:hover {
+   background-color: blueColor;
+}
+
+.purple {
+   composes: button;
+}
+
+.purple:hover {
+   background-color: purpleColor;
+}
