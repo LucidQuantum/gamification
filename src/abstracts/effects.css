@@ -1,4 +1,9 @@
 @value lightBoxShadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+@value lightClickedBoxShadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.4);
+
+@value fastAnimation: 0.15s;
+
+@value lightTextShadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 
 .lightTextShadow {
    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);

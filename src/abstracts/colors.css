@@ -21,6 +21,7 @@
    background-color: #e0e0e0;
 }
 
+@value greyColor: #999999;
 .grey {
    color: #999999;
 }

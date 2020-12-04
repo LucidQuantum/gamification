@@ -1,6 +1,6 @@
 .name {
    composes: pixelName from '../../../../abstracts/typos.css';
-   composes: mediumBottomMargin from '../../../../abstracts/layout.css';
+   composes: smallBottomMargin from '../../../../abstracts/layout.css';
 }
 
 .description {

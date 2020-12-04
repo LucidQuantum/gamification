@@ -1,27 +1,11 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import Header from './components/Header/Header';
-import BottomPanel from './components/BottomPanel/BottomPanel';
-import Battle from './containers/Battle/Battle';
+import Main from './containers/Main/Main';
 
 class App extends Component {
    render() {
-      return (
-         <div
-            style={{
-               height: '100vh',
-               width: '100vw',
-               display: 'flex',
-               flexDirection: 'column',
-               alignContent: 'stretch',
-            }}
-         >
-            <Header />
-            <Battle />
-            <BottomPanel />
-         </div>
-      );
+      return <Main />;
    }
 }
 

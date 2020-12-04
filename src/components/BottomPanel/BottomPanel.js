@@ -13,20 +13,20 @@ const bottomPanel = (props) => (
       <div className={classes.Quarter}>
          <StateDisplay
             name={'生命'}
-            currentValue={64}
-            maxValue={100}
+            currentValue={props.playerState.hp}
+            maxValue={props.playerState.maxHp}
             color={'red'}
          />
          <StateDisplay
             name={'魔法'}
-            currentValue={22}
-            maxValue={25}
+            currentValue={props.playerState.mp}
+            maxValue={props.playerState.maxMp}
             color={'blue'}
          />
          <StateDisplay
             name={'精力'}
-            currentValue={32}
-            maxValue={100}
+            currentValue={props.playerState.ep}
+            maxValue={props.playerState.maxEp}
             color={'purple'}
          />
       </div>

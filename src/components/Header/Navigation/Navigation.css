@@ -1,20 +1,37 @@
-.Button {
+/************** 
+定义wrapper element
+**************/
+.common {
    display: inline-block;
-   margin-right: 2rem;
+   composes: largeRightMargin from '../../../abstracts/layout.css';
    transition: 0.3s all;
    text-align: center;
    transform: translateY(5px);
 }
 
-.Button button {
-   font-family: 'Taipei';
-   font-size: 1.8rem;
-   color: #999999;
-   letter-spacing: 0.4rem;
-   text-indent: 0.4rem;
+.common:hover {
+   font-weight: bold;
+   transform: scale(1.05) translateY(3px);
 }
 
-.Button div {
+.common:last-of-type {
+   margin-right: 0;
+}
+
+@value lightTextShadow from '../../../abstracts/effects.css';
+.common:hover .button {
+   font-family: 'taipeiBold';
+   text-shadow: lightTextShadow;
+}
+
+/************** 
+通用字体样式
+**************/
+.button {
+   composes: headerText from '../../../abstracts/typos.css';
+}
+
+.underline {
    display: block;
    width: 0;
    height: 2px;
@@ -23,44 +40,40 @@
    transition: 0.2s all;
 }
 
-.Red:hover button {
-   color: #cc3333;
-   font-weight: bold;
-   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+/************** 
+三种颜色的表现
+**************/
+@value redColor, blueColor, purpleColor from '../../../abstracts/colors.css';
+
+.red,
+.blue,
+.purple {
+   composes: common;
 }
 
-.Red:hover div {
-   background-color: #cc3333;
+.red:hover .button {
+   color: redColor;
+}
+
+.red:hover .underline {
+   background-color: redColor;
    width: 50%;
 }
 
-.Blue:hover button {
-   color: #3366cc;
-   font-weight: bold;
-   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+.blue:hover .button {
+   color: blueColor;
 }
 
-.Blue:hover div {
-   background-color: #3366cc;
+.blue:hover .underline {
+   background-color: blueColor;
    width: 50%;
 }
 
-.Purple:hover button {
-   color: #6633cc;
-   font-weight: bold;
-   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+.purple:hover .button {
+   color: purpleColor;
 }
 
-.Purple:hover div {
-   background-color: #6633cc;
+.purple:hover .underline {
+   background-color: purpleColor;
    width: 50%;
-}
-
-.Button:last-of-type {
-   margin-right: 0;
-}
-
-.Button:hover {
-   font-weight: bold;
-   transform: scale(1.05) translateY(3px);
 }

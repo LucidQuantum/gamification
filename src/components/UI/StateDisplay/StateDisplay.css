@@ -1,14 +1,13 @@
 .container {
-   composes: largeBottomMargin from '../../../abstracts/layout.css';
+   composes: mediumBottomMargin from '../../../abstracts/layout.css';
 }
 
-@value cancelBottomMargin from '../../../abstracts/layout.css';
 .container:last-of-type {
-   margin-bottom: cancelBottomMargin;
+   margin-bottom: 0;
 }
 
 .text {
-   composes: mediumBottomMargin littleLeftMinusMargin from '../../../abstracts/layout.css';
+   composes: smallBottomMargin littleLeftMinusMargin from '../../../abstracts/layout.css';
    composes: pixelTitle from '../../../abstracts/typos.css';
 }
 

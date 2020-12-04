@@ -4,11 +4,7 @@ import LittleSquare from './LittleSquare/LittleSquare';
 import classes from './StateDisplay.css';
 import chooseColors from '../../../abstracts/chooseColors';
 
-// name: '',
-// currentValue:
-// maxValue
-// color
-
+// name, currentValue, maxValue, color
 const stateDisplay = (props) => {
    // 根据输入的数值，自动生成littleSquare
    const squares = [];
@@ -23,7 +19,7 @@ const stateDisplay = (props) => {
       }
    }
 
-   let className = chooseColors(props.color, classes);
+   const className = chooseColors(props.color, classes);
 
    return (
       <div className={classes.container}>

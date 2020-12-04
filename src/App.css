@@ -6,7 +6,7 @@
    /* content-box是默认，偶尔会更有用 */
    box-sizing: border-box;
    background-color: #f9f3ec;
-   -webkit-font-smoothing: subpixel-antialiased;
+   user-select: none;
 }
 
 html {
@@ -37,40 +37,4 @@ button {
 
 button:focus {
    outline: none;
-}
-
-/***************************** 
-字体部分和全局字体
-*****************************/
-
-/* 通用大字体 */
-h1 {
-   font-family: 'Taipei';
-   font-weight: 700;
-   font-size: 2.5rem;
-}
-
-/* pixel标题 */
-h2 {
-   font-family: 'pixel';
-   font-size: 3rem;
-}
-
-/* pixel中号字体 */
-h3 {
-   background-color: transparent;
-   font-family: 'pixel';
-   font-size: 2rem;
-   letter-spacing: 2px;
-   text-indent: 2px;
-}
-
-/* pixel解释字体 */
-h4 {
-   font-family: 'pixel';
-   font-weight: 500;
-   font-size: 1.5rem;
-   color: #999999;
-   letter-spacing: 3px;
-   text-indent: 3px;
 }

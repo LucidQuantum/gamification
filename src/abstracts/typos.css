@@ -28,12 +28,20 @@
 /************** 
 字体大小
 **************/
-.mediumSize {
+.xsmallSize {
    font-size: 1.5rem;
 }
 
-.largeSize {
+.smallSize {
+   font-size: 1.75rem;
+}
+
+.mediumSize {
    font-size: 2rem;
+}
+
+.largeSize {
+   font-size: 2.5rem;
 }
 
 .xlargeSize {
@@ -53,13 +61,18 @@
    text-indent: 3px;
 }
 
+.mediumSpace {
+   letter-spacing: 4px;
+   text-indent: 4px;
+}
+
 /***************************** 
 常用字体样式
 *****************************/
 .pixelTitle {
    font-family: 'pixel';
    background-color: transparent;
-   composes: largeSize xsmallSpace;
+   composes: mediumSize xsmallSpace;
 }
 
 .pixelName {
@@ -69,5 +82,16 @@
 
 .pixelDescription {
    font-family: 'pixel';
-   composes: mediumSize smallSpace;
+   composes: xsmallSize smallSpace;
+}
+
+.headerText {
+   font-family: 'taipeiRegular';
+   composes: smallSize mediumSpace;
+   composes: grey from './colors.css';
+}
+
+.headerTitle {
+   font-family: 'taipeiBold';
+   composes: largeSize;
 }

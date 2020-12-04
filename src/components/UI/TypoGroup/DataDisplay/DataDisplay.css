@@ -1,7 +1,25 @@
+.common {
+   composes: mediumBottomMargin from '../../../../abstracts/layout.css';
+}
+
+.common:last-of-type {
+   margin-bottom: 0;
+}
+
+.left {
+   text-align: left;
+   composes: common;
+}
+
+.right {
+   text-align: right;
+   composes: common;
+}
+
 .title {
    composes: pixelTitle from '../../../../abstracts/typos.css';
    composes: red from '../../../../abstracts/colors.css';
-   composes: mediumBottomMargin from '../../../../abstracts/layout.css';
+   composes: smallBottomMargin from '../../../../abstracts/layout.css';
 }
 
 .value {
