@@ -4,6 +4,10 @@ import classes from './Main.css';
 import Header from '../../components/Header/Header';
 import BottomPanel from '../../components/BottomPanel/BottomPanel';
 import Battle from '../../pages/Battle/Battle';
+import {
+   stateModifier,
+   packageModifier,
+} from '../../abstracts/scripts/modifier';
 
 import { damageCalculatorAtoB } from '../../abstracts/scripts/calculator';
 
@@ -29,7 +33,26 @@ const player = {
       exp: 0,
    },
    skill: [],
-   package: [],
+   package: [
+      {
+         category: '材料',
+         items: [
+            { id: '1', name: '石头', number: 12 },
+            { id: '2', name: '野草', number: 7 },
+         ],
+      },
+      {
+         category: '消耗品',
+         items: [
+            { id: '3', name: '药水', number: 3 },
+            { id: '4', name: '树枝', number: 21 },
+         ],
+      },
+      {
+         category: '装备',
+         items: [{ id: '5', name: '石头', number: 1 }],
+      },
+   ],
    equipment: [],
 };
 
@@ -60,7 +83,7 @@ const allEnemies = [
             {
                id: 1,
                name: '石头',
-               probability: 0.7,
+               probability: 0.3,
             },
             {
                id: 2,
@@ -96,12 +119,12 @@ const allEnemies = [
             {
                id: 1,
                name: '石头',
-               probability: 0.9,
+               probability: 0.3,
             },
             {
                id: 2,
                name: '野草',
-               probability: 0.4,
+               probability: 0.7,
             },
          ],
       },
@@ -124,10 +147,12 @@ class Main extends Component {
       player: { ...player },
       allEnemies: { ...allEnemies },
       currentEnemy: { ...allEnemies[0], isDeath: false },
+      showEquipments: true,
+      showBase: true,
    };
 
    // 单次攻击计算
-   battleOnce = () => {
+   battleHandler = () => {
       // 复制player和enemy，保持原来的数据不受影响
       let player = { ...this.state.player };
       let currentEnemy = { ...this.state.currentEnemy };
@@ -143,11 +168,7 @@ class Main extends Component {
       } else if (currentEnemy.state.hp <= 0) {
          currentEnemy.state.hp = '死亡';
          currentEnemy.isDeath = true;
-         // 计算奖励
-         this.rewardsCalculator(currentEnemy);
-         console.log('怪物死亡，获得奖励');
       }
-      console.log(player);
 
       this.setState({
          player: { ...player },
@@ -155,140 +176,29 @@ class Main extends Component {
       });
    };
 
-   // 物品修改器，number可以是负数
-   packageModifier = (id, number) => {
-      const player = { ...this.state.player };
-      const index = player.package.findIndex((item) => item.id === id);
-      const itemIndex = allItems.findIndex((item) => item.id === id);
-
-      if (index >= 0) {
-         if (number > 0) {
-            player.package[index].number += number;
-         } else if (number < 0 && number < player.package[index].number) {
-            player.package[index].number -= number;
-         } else if (number < 0 && number > player.package[index].number) {
-            console.log('没有这么多物品扣除');
-         }
-      } else if (index === -1 && itemIndex === -1) {
-         console.log('没有此物品');
-      } else if (index === -1 && itemIndex >= 0) {
-         if (number > 0) {
-            player.package.push({ ...allItems[itemIndex], number: number });
-         } else if (number < 0) {
-            console.log('没有可以扣除的物品');
-         }
-      }
-      this.setState({ player: player });
-   };
-
-   // 状态修改器，value可以为负数
-   stateModifier = (option, value) => {
-      const player = { ...this.state.player };
-      switch (option) {
-         case 'exp':
-            player.state.exp += value;
-            if (player.state.exp < 0) {
-               player.state.exp = 0;
-            }
-            break;
-         case 'hp':
-            player.state.hp += value;
-            if (player.state.hp < 0) {
-               player.state.hp = 0;
-            } else if (player.state.hp > player.state.maxHp) {
-               player.state.hp = player.state.maxHp;
-            }
-            break;
-         case 'mp':
-            player.state.mp += value;
-            if (player.state.mp < 0) {
-               player.state.mp = 0;
-            } else if (player.state.mp > player.state.maxMp) {
-               player.state.mp = player.state.maxMp;
-            }
-            break;
-         case 'ep':
-            player.state.ep += value;
-            if (player.state.ep < 0) {
-               player.state.ep = 0;
-            } else if (player.state.ep > player.state.maxEp) {
-               player.state.ep = player.state.maxEp;
-            }
-            break;
-         default:
-            return;
-      }
-      this.setState({ player: player });
-   };
-
-   // 玩家信息修改器
-   baseModifier = (option, value) => {
-      const player = { ...this.state.player };
-      switch (option) {
-         case 'name':
-            player.base.name = 'value';
-            break;
-         case 'attack':
-            player.base.attack += value;
-            if (player.base.attack < 0) {
-               player.base.attack = 0;
-            }
-            break;
-         case 'armor':
-            player.base.armor += value;
-            if (player.base.armor < 0) {
-               player.base.armor = 0;
-            }
-            break;
-         case 'critRate':
-            player.base.critRate += value;
-            if (player.base.critRate < 0) {
-               player.base.critRate = 0;
-            } else if (player.base.critRate > 1) {
-               player.base.critRate = 1;
-            }
-            break;
-         case 'critDamageMultiplier':
-            player.base.critDamageMultiplier += value;
-            if (player.base.critDamageMultiplier < 0) {
-               player.base.critDamageMultiplier = 0;
-            }
-            break;
-         case 'hitRate':
-            player.base.hitRate += value;
-            break;
-         case 'missRate':
-            player.base.missRate += value;
-            if (player.base.missRate < 0) {
-               player.base.missRate = 0;
-            }
-            break;
-         case 'blockRate':
-            player.base.blockRate += value;
-            if (player.base.blockRate < 0) {
-               player.base.blockRate = 0;
-            }
-            break;
-         case 'block':
-            player.base.block += value;
-            if (player.base.block < 0) {
-               player.base.block = 0;
-            }
-            break;
-         default:
-            return;
-      }
-      this.setState({ player: player });
-   };
-
    // 怪物奖励计算
    rewardsCalculator = (enemy) => {
-      this.stateModifier('exp', enemy.rewards.exp);
+      const player = { ...this.state.player };
+      stateModifier(player, 'exp', enemy.rewards.exp);
       enemy.rewards.items.forEach((item) => {
          if (Math.random() < item.probability) {
-            this.packageModifier(item.id, 1);
+            packageModifier(player, item.id, 1, allItems);
          }
       });
+      this.setState({ player: player });
+   };
+
+   // 转换开关
+   switchShowEquipments = () => {
+      let show = this.state.showEquipments;
+      show ? (show = false) : (show = true);
+      this.setState({ showEquipments: show });
+   };
+
+   switchShowBase = () => {
+      let show = this.state.showBase;
+      show ? (show = false) : (show = true);
+      this.setState({ showBase: show });
    };
 
    render() {
@@ -298,9 +208,21 @@ class Main extends Component {
             <Battle
                playerBase={this.state.player.base}
                currentEnemy={this.state.currentEnemy}
-               attack={this.state.currentEnemy.isDeath ? null : this.battleOnce}
+               attack={
+                  this.state.currentEnemy.isDeath ? null : this.battleHandler
+               }
+               rewards={() => this.rewardsCalculator(this.state.currentEnemy)}
+               showEquipments={this.state.showEquipments}
+               showBase={this.state.showBase}
             />
-            <BottomPanel playerState={this.state.player.state} />
+            <BottomPanel
+               playerState={this.state.player.state}
+               playerPackage={this.state.player.package}
+               showEquipments={this.state.showEquipments}
+               switchShowEquipments={this.switchShowEquipments}
+               switchShowBase={this.switchShowBase}
+               showBase={this.state.showBase}
+            />
          </div>
       );
    }

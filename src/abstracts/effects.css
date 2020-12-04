@@ -8,3 +8,30 @@
 .lightTextShadow {
    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
+
+.mediumBoxShadow {
+   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+@value leftEaseOut: leftEaseOut 0.5s ease-in normal both;
+@value leftEaseIn: leftEaseOut 0.5s ease-in reverse both;
+
+.leftEaseOut {
+   animation: leftEaseOut 0.5s ease-in normal both;
+}
+
+.leftEaseIn {
+   animation: leftEaseOut 0.5s ease-in reverse both;
+}
+
+@keyframes leftEaseOut {
+   0% {
+      opacity: 1;
+      transform: translateX(0);
+   }
+
+   100% {
+      opacity: 0;
+      transform: translateX(-2rem);
+   }
+}

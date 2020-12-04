@@ -11,25 +11,27 @@
 }
 
 .portion {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   transition: 0.2s all;
 }
 
 .leftColumn {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
+   composes: portion;
 }
 
+/* .leftColumn:not(disabled) {
+   animation: leftEaseOut from '../../abstracts/effects.css';
+} */
+
 .middleColumn {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
+   composes: portion;
    align-items: center;
 }
 
 .rightColumn {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
+   composes: portion;
 }
 
 .marginBottom {

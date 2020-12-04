@@ -19,3 +19,11 @@
    padding: 2rem;
    justify-content: center;
 }
+
+.package {
+   position: fixed;
+   right: 22.5rem;
+   bottom: 20rem;
+   display: flex;
+   flex-direction: column;
+}

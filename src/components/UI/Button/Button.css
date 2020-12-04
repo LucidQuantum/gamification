@@ -5,11 +5,18 @@
    composes: pixelTitle from '../../../abstracts/typos.css';
 }
 
+.button:disabled {
+   border: 2px solid greyColor;
+   width: 14rem;
+   height: 5rem;
+   color: greyColor;
+}
+
 .button {
    border: 2px solid greyColor;
    width: 14rem;
    height: 5rem;
-   composes: grey from '../../../abstracts/colors.css';
+   color: greyColor;
    transition: fastAnimation all;
 }
 
@@ -46,5 +53,30 @@
 }
 
 .purple:hover {
+   background-color: purpleColor;
+}
+
+/************** 
+按钮激活后，会显示选定的颜色
+**************/
+.active {
+   color: whiteColor;
+   border-color: transparent;
+   transform: translateY(-1px);
+   box-shadow: lightClickedBoxShadow;
+}
+
+.redActive {
+   composes: active;
+   background-color: redColor;
+}
+
+.blueActive {
+   composes: active;
+   background-color: blueColor;
+}
+
+.purpleActive {
+   composes: active;
    background-color: purpleColor;
 }
