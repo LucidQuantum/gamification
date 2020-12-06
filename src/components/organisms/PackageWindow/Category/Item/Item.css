@@ -1,0 +1,42 @@
+@value fast from '../../../../abstracts/effects.css';
+@value redColor, whiteColor, blackColor from '../../../../abstracts/colors.css';
+
+.oneItem {
+   transition: all 0.2s;
+
+   display: flex;
+   align-items: center;
+}
+
+.oneItem:hover {
+   cursor: pointer;
+}
+
+.oneItem:hover .use {
+   opacity: 1;
+   color: whiteColor;
+}
+
+.oneItem:hover > p {
+   color: redColor;
+}
+
+.oneItem:active,
+.oneItem:active > p {
+   color: blackColor;
+}
+
+.oneItem:active .use {
+   background-color: blackColor;
+}
+
+.use {
+   display: inline-block;
+   margin-left: 6px;
+   color: whiteColor;
+   padding: 3px;
+   padding-right: 4px;
+   background-color: redColor;
+   transition: fast all;
+   opacity: 0;
+}

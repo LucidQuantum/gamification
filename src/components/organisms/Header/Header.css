@@ -1,0 +1,22 @@
+.wrapper {
+   display: flex;
+}
+
+.wrapper > * {
+   margin-right: 2rem;
+}
+
+.header {
+   background-color: transparent;
+   width: 100vw;
+   height: 8rem;
+   padding-left: 5rem;
+   padding-right: 5rem;
+
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+   z-index: 500;
+}

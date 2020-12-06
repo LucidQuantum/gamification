@@ -1,0 +1,18 @@
+@value fast, lightBoxShadow from '../../abstracts/effects.css';
+@value greyColor, whiteColor from '../../abstracts/colors.css';
+
+.window {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   background-color: whiteColor;
+   border: 2px solid greyColor;
+   padding: 3rem 2.5rem;
+   transition: fast all;
+}
+
+.window:hover {
+   box-shadow: lightBoxShadow;
+   transform: translateY(-2px);
+}

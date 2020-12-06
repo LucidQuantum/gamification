@@ -1,0 +1,7 @@
+@value greyColor from '../../../abstracts/colors.css';
+
+.arrow {
+   background-color: greyColor;
+   width: 100%;
+   height: 10px;
+}

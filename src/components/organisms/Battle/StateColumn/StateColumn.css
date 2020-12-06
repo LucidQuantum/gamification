@@ -1,0 +1,5 @@
+@value mediumMargin from '../../../abstracts/layout.css';
+
+.marginBottom > div:not(:last-of-type) {
+   margin-bottom: mediumMargin;
+}

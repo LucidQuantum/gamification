@@ -1,0 +1,13 @@
+@value xsmallMargin, smallMargin, mediumMargin from '../../../abstracts/layout.css';
+
+.itemsMargin:not(:last-of-type) {
+   margin-bottom: xsmallMargin;
+}
+
+.categoryMargin:not(:last-of-type) {
+   margin-bottom: smallMargin;
+}
+
+.wrapper:not(:last-of-type) {
+   margin-bottom: mediumMargin;
+}

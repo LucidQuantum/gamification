@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 
 import classes from './Main.css';
-import Header from '../../components/Header/Header';
-import BottomPanel from '../../components/BottomPanel/BottomPanel';
-import Battle from '../../pages/Battle/Battle';
+import Header from '../../components/organisms/Header/Header';
+import BottomPanel from '../../components/organisms/BottomPanel/BottomPanel';
+import Battle from '../../components/organisms/Battle/Battle';
+import BattleConsequence from '../../components/organisms/BattleConsequence/BattleConsequence';
+
 import {
    stateModifier,
    packageModifier,
-} from '../../abstracts/scripts/modifier';
-
-import { damageCalculatorAtoB } from '../../abstracts/scripts/calculator';
+} from '../../components/abstracts/scripts/modifier';
+import { damageCalculatorAtoB } from '../../components/abstracts/scripts/calculator';
 
 const player = {
    base: {
@@ -35,21 +36,21 @@ const player = {
    skill: [],
    package: [
       {
-         category: '材料',
+         name: '材料',
          items: [
             { id: '1', name: '石头', number: 12 },
             { id: '2', name: '野草', number: 7 },
          ],
       },
       {
-         category: '消耗品',
+         name: '消耗品',
          items: [
             { id: '3', name: '药水', number: 3 },
             { id: '4', name: '树枝', number: 21 },
          ],
       },
       {
-         category: '装备',
+         name: '装备',
          items: [{ id: '5', name: '石头', number: 1 }],
       },
    ],
@@ -149,6 +150,7 @@ class Main extends Component {
       currentEnemy: { ...allEnemies[0], isDeath: false },
       showEquipments: true,
       showBase: true,
+      showPackage: false,
    };
 
    // 单次攻击计算
@@ -201,9 +203,17 @@ class Main extends Component {
       this.setState({ showBase: show });
    };
 
+   switchShowPackage = () => {
+      let show = this.state.showPackage;
+      show ? (show = false) : (show = true);
+      this.setState({ showPackage: show });
+   };
+
    render() {
+      console.log(this.state.showEquipments);
       return (
          <div className={classes.main}>
+            <BattleConsequence />
             <Header />
             <Battle
                playerBase={this.state.player.base}
@@ -212,16 +222,18 @@ class Main extends Component {
                   this.state.currentEnemy.isDeath ? null : this.battleHandler
                }
                rewards={() => this.rewardsCalculator(this.state.currentEnemy)}
-               showEquipments={this.state.showEquipments}
-               showBase={this.state.showBase}
+               showLeft={this.state.showEquipments}
+               showRight={this.state.showBase}
             />
             <BottomPanel
                playerState={this.state.player.state}
                playerPackage={this.state.player.package}
-               showEquipments={this.state.showEquipments}
+               switchShowPackage={this.switchShowPackage}
                switchShowEquipments={this.switchShowEquipments}
                switchShowBase={this.switchShowBase}
+               showPackage={this.state.showPackage}
                showBase={this.state.showBase}
+               showEquipments={this.state.showEquipments}
             />
          </div>
       );

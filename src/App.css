@@ -5,7 +5,6 @@
    padding: 0;
    /* content-box是默认，偶尔会更有用 */
    box-sizing: border-box;
-   background-color: #f9f3ec;
    user-select: none;
 }
 

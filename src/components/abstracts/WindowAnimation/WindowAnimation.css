@@ -1,0 +1,23 @@
+@value medium from '../effects.css';
+
+.enter:first-child {
+   transform: translateY(3rem);
+   opacity: 0;
+}
+
+.enterActive:first-child {
+   transform: translateY(0);
+   opacity: 1;
+   transition: medium all;
+}
+
+.exit:first-child {
+   transform: translateY(0);
+   opacity: 1;
+}
+
+.exitActive:first-child {
+   transform: translateY(3rem);
+   opacity: 0;
+   transition: medium all;
+}

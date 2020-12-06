@@ -1,0 +1,66 @@
+@value lightTextShadow, lightClickedTextShadow from '../../../abstracts/effects.css';
+@value purpleColor, blackColor from '../../../abstracts/colors.css';
+@value fast from '../../../abstracts/effects.css';
+
+.button {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   transition: fast all;
+   padding: 5px 3px;
+}
+
+.underline {
+   display: block;
+   position: absolute;
+   transform: translateY(1.8rem);
+   width: 0;
+   height: 2px;
+   opacity: 0.3;
+   /* background-color: transparent; */
+   margin: 5px auto;
+   transition: fast all;
+}
+
+.button:hover,
+.button.active {
+   font-weight: bold;
+   transform: scale(1.08);
+}
+
+.button:hover p,
+.button.active p {
+   color: purpleColor;
+}
+
+.button:hover .underline,
+.button.active .underline {
+   background-color: purpleColor;
+   animation: underline fast ease-in forwards;
+}
+
+.button:active p {
+   font-weight: bold;
+   color: blackColor;
+}
+
+.button:active .underline {
+   background-color: blackColor;
+}
+
+@keyframes underline {
+   0% {
+      opacity: 0.3;
+      width: 0;
+   }
+
+   50% {
+      opacity: 0.8;
+      width: 25%;
+   }
+
+   100% {
+      opacity: 1;
+      width: 50%;
+   }
+}

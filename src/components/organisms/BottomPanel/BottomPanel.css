@@ -1,0 +1,39 @@
+@value mediumMargin from '../../abstracts/layout.css';
+
+.wrapper {
+   width: 100%;
+   height: 25%;
+   min-height: 20rem;
+   background-color: transparent;
+   box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.1);
+
+   display: flex;
+   justify-content: space-around;
+   align-items: stretch;
+}
+
+.oneOfFour {
+   flex-direction: column;
+
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: center;
+}
+
+.stateWrapper > *:not(:last-of-type) {
+   margin-bottom: mediumMargin;
+}
+
+.grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-gap: 3rem;
+}
+
+.window {
+   position: absolute;
+   min-width: 20rem;
+   bottom: 20rem;
+   right: 29rem;
+}

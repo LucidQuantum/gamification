@@ -1,0 +1,62 @@
+/***************************** 
+每种颜色都会有color版本，和background版本
+*****************************/
+
+@value whiteColor: #f9f3ec;
+@value lightGreyColor: #e0e0e0;
+@value greyColor: #999999;
+@value blackColor: #333333;
+@value redColor: #cc3333;
+@value blueColor: #3366cc;
+@value purpleColor: #6633cc;
+
+/* 常用黑白灰 */
+.white {
+   color: #f9f3ec;
+}
+
+.whiteBackground {
+   background-color: #f9f3ec;
+}
+
+.lightGrey {
+   color: #e0e0e0;
+}
+
+.lightGreyBackground {
+   background-color: #e0e0e0;
+}
+
+.grey {
+   color: #999999;
+}
+
+.black {
+   color: #333333;
+}
+
+/* 3种有色相颜色 */
+
+.red {
+   color: #cc3333;
+}
+
+.redBackground {
+   background-color: #cc3333;
+}
+
+.blue {
+   color: #3366cc;
+}
+
+.blueBackground {
+   background-color: #3366cc;
+}
+
+.purple {
+   color: #6633cc;
+}
+
+.purpleBackground {
+   background-color: #6633cc;
+}

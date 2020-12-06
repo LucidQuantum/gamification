@@ -1,0 +1,47 @@
+@value typos: '../../../abstracts/typos.css';
+@value whiteColor, lightGreyColor, greyColor, blackColor, redColor, blueColor, purpleColor from '../../../abstracts/colors.css';
+
+.common {
+   font-family: 'taipeiRegular';
+   composes: smallSize mediumSpace from typos;
+}
+
+.red {
+   composes: common;
+   color: redColor;
+}
+
+.blue {
+   composes: common;
+   color: blueColor;
+}
+
+.purple {
+   composes: common;
+   color: purpleColor;
+}
+
+.grey {
+   composes: common;
+   color: greyColor;
+}
+
+.lightGrey {
+   composes: common;
+   color: lightGreyColor;
+}
+
+.black {
+   composes: common;
+   color: blackColor;
+}
+
+.white {
+   composes: common;
+   color: whiteColor;
+}
+
+.default {
+   composes: common;
+   color: greyColor;
+}

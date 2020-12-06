@@ -1,0 +1,11 @@
+@value smallMargin from '../../abstracts/layout.css';
+
+.textAlign {
+   text-align: center;
+}
+
+.textMargin {
+   margin-bottom: smallMargin;
+}
+
+

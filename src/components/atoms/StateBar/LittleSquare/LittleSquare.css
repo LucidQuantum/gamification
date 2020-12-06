@@ -1,0 +1,32 @@
+@value colors: '../../../abstracts/colors.css';
+
+.common {
+   width: 7px;
+   height: 7px;
+   display: inline-block;
+   margin-right: 5px;
+}
+
+.common:last-of-type {
+   margin-right: 0;
+}
+
+.red {
+   composes: common;
+   composes: redBackground from colors;
+}
+
+.blue {
+   composes: common;
+   composes: blueBackground from colors;
+}
+
+.purple {
+   composes: common;
+   composes: purpleBackground from colors;
+}
+
+.default {
+   composes: common;
+   composes: lightGreyBackground from colors;
+}

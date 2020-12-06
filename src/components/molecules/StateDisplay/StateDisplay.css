@@ -1,0 +1,14 @@
+@value smallMargin, mediumMargin from '../../abstracts/layout.css';
+
+.container {
+   margin-bottom: mediumMargin;
+}
+
+.container:last-of-type {
+   margin-bottom: 0;
+}
+
+.textMargin {
+   margin-bottom: smallMargin;
+   margin-left: -3px;
+}

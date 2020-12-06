@@ -1,0 +1,5 @@
+@value smallMargin from '../../abstracts/layout.css';
+
+.textMargin {
+   margin-bottom: smallMargin;
+}
