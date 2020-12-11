@@ -1,0 +1,7 @@
+@value lightGreyColor from '../../abstracts/colors.css';
+
+.line {
+   width: 70%;
+   height: 2px;
+   background-color: lightGreyColor;
+}

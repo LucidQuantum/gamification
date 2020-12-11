@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import classes from './DarkBackground.css';
 
-// in
+// in, children
 const DarkBackground = (props) => (
    <CSSTransition
       in={props.in}
@@ -11,9 +11,7 @@ const DarkBackground = (props) => (
       classNames={{ ...classes }}
       unmountOnExit
    >
-      <div className={classes.background}>
-         <div className={classes.wrapper}>{props.children}</div>
-      </div>
+      <div className={classes.background}>{props.children}</div>
    </CSSTransition>
 );
 

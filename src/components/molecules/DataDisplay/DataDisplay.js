@@ -4,10 +4,10 @@ import classes from './DataDisplay.css';
 import PixelTitle from '../../atoms/Typos/PixelTitle/PixelTitle';
 import PixelName from '../../atoms/Typos/PixelName/PixelName';
 
-// title, content
+// title, content, type
 const dataDisplay = (props) => {
    let titleColor, contentColor;
-   if (props.disabled) {
+   if (props.type === 'grey') {
       titleColor = 'grey';
       contentColor = 'lightGrey';
    } else {

@@ -8,12 +8,14 @@ const button = (props) => {
    const active = props.active ? classes.active : null;
 
    return (
-      <button
-         className={[classes.button, active].join(' ')}
-         onClick={props.clicked}
-      >
-         <PixelTitle color="grey">{props.children}</PixelTitle>
-      </button>
+      <div>
+         <button
+            className={[classes.button, active].join(' ')}
+            onClick={props.clicked}
+         >
+            <PixelTitle color="grey">{props.children}</PixelTitle>
+         </button>
+      </div>
    );
 };
 

@@ -14,6 +14,11 @@
    transition: medium all;
 }
 
+.enterDone:first-child {
+   transform: translateY(0);
+   opacity: 1;
+}
+
 .exit:first-child {
    transform: translateY(0);
    opacity: 1;
@@ -33,8 +38,7 @@
    justify-content: center;
    background-color: whiteColor;
    border: 2px solid greyColor;
-   padding: 4rem 3.5rem;
-   transition: fast all;
+   padding: 5rem;
 }
 
 .window:hover {

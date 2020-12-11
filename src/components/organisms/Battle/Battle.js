@@ -8,7 +8,7 @@ import classes from './Battle.css';
 import {
    decimalToPercent,
    decimalToMultiplier,
-} from '../../abstracts/scripts/typeTransformer';
+} from '../../../scripts/typeTransformer';
 
 const equipments = [
    {
@@ -28,22 +28,29 @@ const battle = (props) => {
    // 转换需要展示的信息
    const equipmentArray = equipments.map((equipment) =>
       equipment.id === null
-         ? { title: equipment.position, disabled: true, content: '无' }
+         ? { title: equipment.position, type: 'grey', content: '无' }
          : { title: equipment.position, content: equipment.name }
    );
 
    const playerBaseArray = [
-      { title: '攻击力', content: props.playerBase.attack },
-      { title: '护甲', content: props.playerBase.armor },
-      { title: '暴击率', content: decimalToPercent(props.playerBase.critRate) },
+      { title: '攻击力', content: props.player.base.attack },
+      { title: '护甲', content: props.player.base.armor },
+      {
+         title: '暴击率',
+         content: decimalToPercent(props.player.base.critRate),
+      },
       {
          title: '暴击伤害',
-         content: decimalToMultiplier(props.playerBase.critDamageMultiplier),
+         content: decimalToMultiplier(props.player.base.critDamageMultiplier),
       },
-      { title: '命中率', content: decimalToPercent(props.playerBase.hitRate) },
-      { title: '闪避率', content: decimalToPercent(props.playerBase.missRate) },
+      { title: '命中率', content: decimalToPercent(props.player.base.hitRate) },
+      {
+         title: '闪避率',
+         content: decimalToPercent(props.player.base.missRate),
+      },
    ];
 
+   // 根据开关状态设置classes
    const showLeft = props.showLeft ? classes.showLeft : null;
    const showRight = props.showRight ? classes.showRight : null;
 

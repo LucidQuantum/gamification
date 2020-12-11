@@ -7,7 +7,11 @@ import chooseColors from '../../../abstracts/chooseColors';
 const pixelTitle = (props) => {
    const className = chooseColors(props.color, classes);
 
-   return <p className={className}>{props.children}</p>;
+   return (
+      <div>
+         <p className={className}>{props.children}</p>
+      </div>
+   );
 };
 
 export default pixelTitle;

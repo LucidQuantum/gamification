@@ -1,0 +1,13 @@
+@value smallMargin, mediumMargin from '../../../abstracts/layout.css';
+
+.itemMargin:not(:last-of-type) {
+   margin-bottom: smallMargin;
+}
+
+.titleMargin:not(:last-of-type) {
+   margin-bottom: mediumMargin;
+}
+
+.wrapper {
+   width: 100%;
+}

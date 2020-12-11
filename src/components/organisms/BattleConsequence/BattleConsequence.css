@@ -1,5 +1,12 @@
 @value largeMargin from '../../abstracts/layout.css';
 
-.wrapper div:not(:last-of-type) {
+.marginBottom {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.marginBottom > div:not(:last-of-type) {
    margin-bottom: largeMargin;
 }

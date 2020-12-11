@@ -7,11 +7,9 @@ import PackageWindow from '../PackageWindow/PackageWindow';
 
 import classes from './BottomPanel.css';
 
-// import Window from '../UI/Window/Window';
-// import ClickableList from '../UI/ClickableList/ClickableList';
-
 const bottomPanel = (props) => (
    <div className={classes.wrapper}>
+      {console.log(props.player.state.exp)}
       <div className={classes.oneOfFour}>
          <RedButton
             clicked={props.switchShowEquipments}
@@ -24,31 +22,31 @@ const bottomPanel = (props) => (
          <div className={classes.stateWrapper}>
             <StateDisplay
                name={'生命'}
-               current={props.playerState.hp}
-               max={props.playerState.maxHp}
+               current={props.player.state.hp}
+               max={props.player.state.maxHp}
                color={'red'}
             />
             <StateDisplay
                name={'魔法'}
-               current={props.playerState.mp}
-               max={props.playerState.maxMp}
+               current={props.player.state.mp}
+               max={props.player.state.maxMp}
                color={'blue'}
             />
             <StateDisplay
                name={'精力'}
-               current={props.playerState.ep}
-               max={props.playerState.maxEp}
+               current={props.player.state.ep}
+               max={props.player.state.maxEp}
                color={'purple'}
             />
          </div>
       </div>
       <div className={classes.oneOfFour}>
-         <NameDisplay title={props.playerState.exp} content="探索点" />
+         <NameDisplay title={props.player.state.exp} content="探索点" />
       </div>
       <div className={classes.oneOfFour}>
          <div className={classes.window}>
             <PackageWindow
-               package={props.playerPackage}
+               package={props.player.package}
                in={props.showPackage}
             />
          </div>

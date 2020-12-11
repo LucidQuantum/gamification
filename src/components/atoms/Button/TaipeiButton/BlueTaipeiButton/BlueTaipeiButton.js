@@ -8,10 +8,12 @@ const redTaipeiButton = (props) => {
    const active = props.active ? classes.active : null;
 
    return (
-      <button className={[classes.button, active].join(' ')}>
-         <TaipeiNormal>{props.children}</TaipeiNormal>
-         <div className={classes.underline} />
-      </button>
+      <div>
+         <button className={[classes.button, active].join(' ')}>
+            <TaipeiNormal>{props.children}</TaipeiNormal>
+            <div className={classes.underline} />
+         </button>
+      </div>
    );
 };
 

@@ -1,34 +1,37 @@
+@value medium from '../../abstracts/effects.css';
 @value blackColor from '../../abstracts/colors.css';
 
 .background {
-   display: fixed;
+   position: fixed;
    width: 100vw;
    height: 100vh;
    left: 0;
    top: 0;
-   background-color: blackColor;
-}
-
-.wrapper {
    display: flex;
    align-items: center;
    justify-content: center;
+   z-index: 100;
+   background-color: rgba(0, 0, 0, 0.9);
 }
 
-.appear:first-child {
-   opacity: 0;
+.enter:first-child {
+   background-color: rgba(0, 0, 0, 0);
 }
 
-.appearActive:first-child {
-   opacity: 0.6;
+.enterActive:first-child {
+   background-color: rgba(0, 0, 0, 0.9);
    transition: medium all;
 }
 
+.enterDone:first-child {
+   background-color: rgba(0, 0, 0, 0.9);
+}
+
 .exit:first-child {
-   opacity: 0.6;
+   background-color: rgba(0, 0, 0, 0.9);
 }
 
 .exitActive:first-child {
-   opacity: 0;
+   background-color: rgba(0, 0, 0, 0);
    transition: medium all;
 }

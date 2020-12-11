@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import classes from './Window.css';
 
-// children
+// in, children
 const window = (props) => (
    <CSSTransition
       in={props.in}
