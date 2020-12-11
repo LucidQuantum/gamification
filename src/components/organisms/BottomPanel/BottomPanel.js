@@ -4,7 +4,6 @@ import RedButton from '../../atoms/Button/RedButton/RedButton';
 import StateDisplay from '../../molecules/StateDisplay/StateDisplay';
 import NameDisplay from '../../molecules/NameDisplay/NameDisplay';
 import PackageWindow from '../PackageWindow/PackageWindow';
-import WindowAnimation from '../../abstracts/WindowAnimation/WindowAnimation';
 
 import classes from './BottomPanel.css';
 
@@ -47,11 +46,12 @@ const bottomPanel = (props) => (
          <NameDisplay title={props.playerState.exp} content="探索点" />
       </div>
       <div className={classes.oneOfFour}>
-         <WindowAnimation in={props.showPackage}>
-            <div className={classes.window}>
-               <PackageWindow package={props.playerPackage} />
-            </div>
-         </WindowAnimation>
+         <div className={classes.window}>
+            <PackageWindow
+               package={props.playerPackage}
+               in={props.showPackage}
+            />
+         </div>
 
          <div className={classes.grid}>
             <RedButton

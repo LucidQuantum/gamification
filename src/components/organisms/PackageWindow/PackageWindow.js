@@ -5,9 +5,9 @@ import PixelName from '../../atoms/Typos/PixelName/PixelName';
 import Category from './Category/Category';
 import Window from '../../atoms/Window/Window';
 
-// package
+// package, in
 const packageWindow = (props) => (
-   <Window>
+   <Window in={props.in}>
       <div className={classes.wrapper}>
          <div className={classes.packageTitleMargin}>
             <PixelName>背包</PixelName>

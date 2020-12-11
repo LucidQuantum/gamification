@@ -1,10 +1,18 @@
 import React from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import classes from './Window.css';
 
-// title
+// children
 const window = (props) => (
-   <div className={classes.window}>{props.children}</div>
+   <CSSTransition
+      in={props.in}
+      timeout={500}
+      classNames={{ ...classes }}
+      unmountOnExit
+   >
+      <div className={classes.window}>{props.children}</div>
+   </CSSTransition>
 );
 
 export default window;

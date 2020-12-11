@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TaipeiNormal from '../../Typos/TaipeiNormal/TaipeiNormal';
+import TaipeiNormal from '../../../Typos/TaipeiNormal/TaipeiNormal';
 import classes from './PurpleTaipeiButton.css';
 
 // clicked, active

@@ -13,8 +13,10 @@ const BattleConsequence = (props) => (
          <DarkBackground in={true}>
             <div className={classes.window}>
                <Window>
-                  <PixelName color="red">{'>>战胜<<'}</PixelName>
-                  <NameDisplay title="210" content="探索点" />
+                  <div>
+                     <PixelName color="red">{'>>战胜<<'}</PixelName>
+                  </div>
+
                   <ExpDifference />
                </Window>
             </div>

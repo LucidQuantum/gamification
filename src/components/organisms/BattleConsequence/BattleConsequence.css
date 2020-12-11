@@ -1,0 +1,5 @@
+@value largeMargin from '../../abstracts/layout.css';
+
+.wrapper div:not(:last-of-type) {
+   margin-bottom: largeMargin;
+}

@@ -1,6 +1,6 @@
-@value lightTextShadow, lightClickedTextShadow from '../../../abstracts/effects.css';
-@value purpleColor, blackColor from '../../../abstracts/colors.css';
-@value fast from '../../../abstracts/effects.css';
+@value lightTextShadow, lightClickedTextShadow from '../../../../abstracts/effects.css';
+@value redColor, blackColor from '../../../../abstracts/colors.css';
+@value fast from '../../../../abstracts/effects.css';
 
 .button {
    display: flex;
@@ -30,12 +30,12 @@
 
 .button:hover p,
 .button.active p {
-   color: purpleColor;
+   color: redColor;
 }
 
 .button:hover .underline,
 .button.active .underline {
-   background-color: purpleColor;
+   background-color: redColor;
    animation: underline fast ease-in forwards;
 }
 

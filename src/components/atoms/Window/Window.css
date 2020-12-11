@@ -1,6 +1,31 @@
 @value fast, lightBoxShadow from '../../abstracts/effects.css';
 @value greyColor, whiteColor from '../../abstracts/colors.css';
+@value medium from '../../abstracts/effects.css';
 
+/* Window动画效果 */
+.enter:first-child {
+   transform: translateY(3rem);
+   opacity: 0;
+}
+
+.enterActive:first-child {
+   transform: translateY(0);
+   opacity: 1;
+   transition: medium all;
+}
+
+.exit:first-child {
+   transform: translateY(0);
+   opacity: 1;
+}
+
+.exitActive:first-child {
+   transform: translateY(3rem);
+   opacity: 0;
+   transition: medium all;
+}
+
+/* Window定义 */
 .window {
    display: flex;
    flex-direction: column;
@@ -8,11 +33,10 @@
    justify-content: center;
    background-color: whiteColor;
    border: 2px solid greyColor;
-   padding: 3rem 2.5rem;
+   padding: 4rem 3.5rem;
    transition: fast all;
 }
 
 .window:hover {
    box-shadow: lightBoxShadow;
-   transform: translateY(-2px);
 }

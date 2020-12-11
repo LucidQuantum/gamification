@@ -213,7 +213,7 @@ class Main extends Component {
       console.log(this.state.showEquipments);
       return (
          <div className={classes.main}>
-            <BattleConsequence />
+            {/* <BattleConsequence /> */}
             <Header />
             <Battle
                playerBase={this.state.player.base}

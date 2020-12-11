@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TaipeiNormal from '../../Typos/TaipeiNormal/TaipeiNormal';
-import classes from './RedTaipeiButton.css';
+import TaipeiNormal from '../../../Typos/TaipeiNormal/TaipeiNormal';
+import classes from './BlueTaipeiButton.css';
 
 // clicked, active
 const redTaipeiButton = (props) => {

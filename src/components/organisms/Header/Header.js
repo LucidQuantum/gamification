@@ -2,9 +2,9 @@ import React from 'react';
 
 import classes from './Header.css';
 import TaipeiLarge from '../../atoms/Typos/TaipeiLarge/TaipeiLarge';
-import RedTaipeiButton from '../../atoms/TaipeiButton/RedTaipeiButton/RedTaipeiButton';
-import BlueTaipeiButton from '../../atoms/TaipeiButton/BlueTaipeiButton/BlueTaipeiButton';
-import PurpleTaipeiButton from '../../atoms/TaipeiButton/PurpleTaipeiButton/PurpleTaipeiButton';
+import RedTaipeiButton from '../../atoms/Button/TaipeiButton/RedTaipeiButton/RedTaipeiButton';
+import BlueTaipeiButton from '../../atoms/Button/TaipeiButton/BlueTaipeiButton/BlueTaipeiButton';
+import PurpleTaipeiButton from '../../atoms/Button/TaipeiButton/PurpleTaipeiButton/PurpleTaipeiButton';
 
 const header = (props) => (
    <div className={classes.header}>

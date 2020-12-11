@@ -1,6 +1,6 @@
-@value lightTextShadow, lightClickedTextShadow from '../../../abstracts/effects.css';
-@value blueColor, blackColor from '../../../abstracts/colors.css';
-@value fast from '../../../abstracts/effects.css';
+@value lightTextShadow, lightClickedTextShadow from '../../../../abstracts/effects.css';
+@value blueColor, blackColor from '../../../../abstracts/colors.css';
+@value fast from '../../../../abstracts/effects.css';
 
 .button {
    display: flex;
