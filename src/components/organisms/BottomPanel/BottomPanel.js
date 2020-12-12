@@ -9,7 +9,7 @@ import classes from './BottomPanel.css';
 
 const bottomPanel = (props) => (
    <div className={classes.wrapper}>
-      {console.log(props.player.state.exp)}
+      {/* 左边按钮 */}
       <div className={classes.oneOfFour}>
          <RedButton
             clicked={props.switchShowEquipments}
@@ -18,6 +18,8 @@ const bottomPanel = (props) => (
             装备
          </RedButton>
       </div>
+
+      {/* 玩家状态栏 */}
       <div className={classes.oneOfFour}>
          <div className={classes.stateWrapper}>
             <StateDisplay
@@ -40,9 +42,13 @@ const bottomPanel = (props) => (
             />
          </div>
       </div>
+
+      {/* 探索点 */}
       <div className={classes.oneOfFour}>
          <NameDisplay title={props.player.state.exp} content="探索点" />
       </div>
+
+      {/* 右边按钮 */}
       <div className={classes.oneOfFour}>
          <div className={classes.window}>
             <PackageWindow

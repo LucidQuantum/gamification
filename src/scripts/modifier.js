@@ -1,122 +1,129 @@
-// 玩家信息修改器
-export const baseModifier = (player, option, value) => {
+// 数值修改器：输入对象、选项、数值，返回一个新的object(value可以为负数)
+export const numberModifier = (creatureObject, option, value) => {
    switch (option) {
       case 'name':
-         player.base.name = 'value';
+         creatureObject.base.name = 'value';
          break;
       case 'attack':
-         player.base.attack += value;
-         if (player.base.attack < 0) {
-            player.base.attack = 0;
+         creatureObject.base.attack += value;
+         if (creatureObject.base.attack < 0) {
+            creatureObject.base.attack = 0;
          }
          break;
       case 'armor':
-         player.base.armor += value;
-         if (player.base.armor < 0) {
-            player.base.armor = 0;
+         creatureObject.base.armor += value;
+         if (creatureObject.base.armor < 0) {
+            creatureObject.base.armor = 0;
          }
          break;
       case 'critRate':
-         player.base.critRate += value;
-         if (player.base.critRate < 0) {
-            player.base.critRate = 0;
-         } else if (player.base.critRate > 1) {
-            player.base.critRate = 1;
+         creatureObject.base.critRate += value;
+         if (creatureObject.base.critRate < 0) {
+            creatureObject.base.critRate = 0;
+         } else if (creatureObject.base.critRate > 1) {
+            creatureObject.base.critRate = 1;
          }
          break;
       case 'critDamageMultiplier':
-         player.base.critDamageMultiplier += value;
-         if (player.base.critDamageMultiplier < 0) {
-            player.base.critDamageMultiplier = 0;
+         creatureObject.base.critDamageMultiplier += value;
+         if (creatureObject.base.critDamageMultiplier < 0) {
+            creatureObject.base.critDamageMultiplier = 0;
          }
          break;
       case 'hitRate':
-         player.base.hitRate += value;
+         creatureObject.base.hitRate += value;
          break;
       case 'missRate':
-         player.base.missRate += value;
-         if (player.base.missRate < 0) {
-            player.base.missRate = 0;
+         creatureObject.base.missRate += value;
+         if (creatureObject.base.missRate < 0) {
+            creatureObject.base.missRate = 0;
          }
          break;
       case 'blockRate':
-         player.base.blockRate += value;
-         if (player.base.blockRate < 0) {
-            player.base.blockRate = 0;
+         creatureObject.base.blockRate += value;
+         if (creatureObject.base.blockRate < 0) {
+            creatureObject.base.blockRate = 0;
          }
          break;
       case 'block':
-         player.base.block += value;
-         if (player.base.block < 0) {
-            player.base.block = 0;
+         creatureObject.base.block += value;
+         if (creatureObject.base.block < 0) {
+            creatureObject.base.block = 0;
          }
          break;
-      default:
-         return;
-   }
-   return player;
-};
-
-// 状态修改器，value可以为负数
-export const stateModifier = (player, option, value) => {
-   switch (option) {
       case 'exp':
-         player.state.exp += value;
-         if (player.state.exp < 0) {
-            player.state.exp = 0;
+         creatureObject.state.exp += value;
+         if (creatureObject.state.exp < 0) {
+            creatureObject.state.exp = 0;
          }
          break;
       case 'hp':
-         player.state.hp += value;
-         if (player.state.hp < 0) {
-            player.state.hp = 0;
-         } else if (player.state.hp > player.state.maxHp) {
-            player.state.hp = player.state.maxHp;
+         creatureObject.state.hp += value;
+         if (creatureObject.state.hp < 0) {
+            creatureObject.state.hp = 0;
+         } else if (creatureObject.state.hp > creatureObject.state.maxHp) {
+            creatureObject.state.hp = creatureObject.state.maxHp;
          }
          break;
       case 'mp':
-         player.state.mp += value;
-         if (player.state.mp < 0) {
-            player.state.mp = 0;
-         } else if (player.state.mp > player.state.maxMp) {
-            player.state.mp = player.state.maxMp;
+         creatureObject.state.mp += value;
+         if (creatureObject.state.mp < 0) {
+            creatureObject.state.mp = 0;
+         } else if (creatureObject.state.mp > creatureObject.state.maxMp) {
+            creatureObject.state.mp = creatureObject.state.maxMp;
          }
          break;
       case 'ep':
-         player.state.ep += value;
-         if (player.state.ep < 0) {
-            player.state.ep = 0;
-         } else if (player.state.ep > player.state.maxEp) {
-            player.state.ep = player.state.maxEp;
+         creatureObject.state.ep += value;
+         if (creatureObject.state.ep < 0) {
+            creatureObject.state.ep = 0;
+         } else if (creatureObject.state.ep > creatureObject.state.maxEp) {
+            creatureObject.state.ep = creatureObject.state.maxEp;
          }
          break;
       default:
          return;
    }
-   return player;
+   return creatureObject;
 };
 
-// 物品修改器，number可以是负数
-export const packageModifier = (player, id, number, allItems) => {
-   const index = player.package.findIndex((item) => item.id === id);
-   const itemIndex = allItems.findIndex((item) => item.id === id);
+// 物品修改器：输入对象、id、number、itemsMuseum，输出一个新的对象(number可以是负数)
+export const packageModifier = (player, id, number, itemsMuseum) => {
+   // 在itemsMuseum中找到这个物品
+   const playerIndex = player.package.findIndex((item) => item.id === id);
 
-   if (index >= 0) {
-      if (number > 0) {
-         player.package[index].number += number;
-      } else if (number < 0 && number < player.package[index].number) {
-         player.package[index].number -= number;
-      } else if (number < 0 && number > player.package[index].number) {
-         console.log('没有这么多物品扣除');
+   if (number < 0) {
+      // 在玩家背包中寻找有没有这个物品
+      if (playerIndex === -1) {
+         // - 如果没有，直接报错
+         alert('没有东西可以扣除');
+      } else if (playerIndex >= 0) {
+         // - 如果有，那么相加后是否小于等于0？
+         const finalNumber = player.package[playerIndex].number + number;
+         if (finalNumber < 0) {
+            // - 如果小于0，不修改物品，并报错
+            alert('玩家物品数量不足');
+         } else if (finalNumber === 0) {
+            // - 如果等于0，那么将这一项抹去
+            player.package.splice(playerIndex, 1);
+         } else {
+            player.package[playerIndex].number = finalNumber;
+         }
       }
-   } else if (index === -1 && itemIndex === -1) {
-      console.log('没有此物品');
-   } else if (index === -1 && itemIndex >= 0) {
-      if (number > 0) {
-         player.package.push({ ...allItems[itemIndex], number: number });
-      } else if (number < 0) {
-         console.log('没有可以扣除的物品');
+   } else if (number > 0) {
+      // 玩家背包中有没有这个物品？
+      if (playerIndex === -1) {
+         // - 如果没有，那么在itemsMuseum中寻找这个物品，并且在玩家的背包中加入
+         const museumIndex = itemsMuseum.findIndex((item) => item.id === id);
+         const item = itemsMuseum[museumIndex];
+         player.package.push({ ...item, number: number });
+      } else if (playerIndex >= 0) {
+         // - 如果有，那么直接加上number就好
+         player.package[playerIndex].number += number;
       }
    }
+
    return player;
 };
+
+// 怪物掉落物品计算，输入

@@ -11,3 +11,7 @@
 .wrapper:not(:last-of-type) {
    margin-bottom: mediumMargin;
 }
+
+.wrapper {
+   text-align: left;
+}

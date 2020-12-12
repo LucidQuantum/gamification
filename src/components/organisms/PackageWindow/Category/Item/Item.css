@@ -17,12 +17,12 @@
    color: whiteColor;
 }
 
-.oneItem:hover > p {
+.oneItem:hover > div > p {
    color: redColor;
 }
 
 .oneItem:active,
-.oneItem:active > p {
+.oneItem:active > div > p {
    color: blackColor;
 }
 

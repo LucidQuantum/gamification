@@ -13,7 +13,7 @@ const packageWindow = (props) => (
             <PixelName>背包</PixelName>
          </div>
          {props.package.map((category) => (
-            <Category itemsArray={category.items}>{category.name}</Category>
+            <Category itemsArray={category.items}>{category.category}</Category>
          ))}
       </div>
    </Window>

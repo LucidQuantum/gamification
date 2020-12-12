@@ -7,7 +7,7 @@ import Battle from '../../components/organisms/Battle/Battle';
 import BattleConsequence from '../../components/organisms/BattleConsequence/BattleConsequence';
 import copyObject from '../../scripts/copyObject';
 
-import { stateModifier, packageModifier } from '../../scripts/modifier';
+import { numberModifier, packageModifier } from '../../scripts/modifier';
 import { damageCalculatorAtoB } from '../../scripts/calculator';
 
 const playerData = {
@@ -17,7 +17,7 @@ const playerData = {
       armor: 10,
       critRate: 0.05,
       critDamageMultiplier: 1.5,
-      hitRate: -0.3,
+      hitRate: -0.1,
       missRate: 0.1,
       blockRate: 0.05,
       block: 1,
@@ -32,26 +32,7 @@ const playerData = {
       exp: 0,
    },
    skill: [],
-   package: [
-      {
-         name: '材料',
-         items: [
-            { id: '1', name: '石头', number: 1 },
-            { id: '2', name: '野草', number: 1 },
-         ],
-      },
-      {
-         name: '消耗品',
-         items: [
-            { id: '3', name: '药水', number: 1 },
-            { id: '4', name: '树枝', number: 1 },
-         ],
-      },
-      {
-         name: '装备',
-         items: [{ id: '5', name: '石头', number: 1 }],
-      },
-   ],
+   package: [],
    equipment: [],
 };
 
@@ -76,21 +57,28 @@ const allEnemies = [
          mp: 25,
          maxMp: 25,
       },
-      rewards: {
-         exp: 3,
-         items: [
-            {
-               id: 1,
-               name: '石头',
-               probability: 0.3,
-            },
-            {
-               id: 2,
-               name: '野草',
-               probability: 0.7,
-            },
-         ],
-      },
+      exp: 3,
+      ep: 4,
+      rewards: [
+         {
+            id: '1',
+            name: '石头',
+            description:
+               '制造武器的材料，需要学习「初级武器制造」才能使用这种材料',
+            divisionName: '材料',
+            groupName: '制造',
+            probability: 0.3,
+         },
+         {
+            id: '2',
+            name: '小草',
+            description:
+               '制造草药的材料，需要学习「初级草药制造」才能使用这种材料',
+            divisionName: '材料',
+            groupName: '制造',
+            probability: 0.7,
+         },
+      ],
    },
    {
       id: 2,
@@ -112,36 +100,67 @@ const allEnemies = [
          mp: 10,
          maxMp: 10,
       },
-      rewards: {
-         exp: 5,
-         items: [
-            {
-               id: 1,
-               name: '石头',
-               probability: 0.3,
-            },
-            {
-               id: 2,
-               name: '野草',
-               probability: 0.7,
-            },
-         ],
-      },
+      exp: 5,
+      ep: 10,
+      rewards: [
+         {
+            id: 1,
+            probability: 0.7,
+         },
+         {
+            id: 2,
+            probability: 0.3,
+         },
+      ],
    },
 ];
 
 const allItems = [
    {
-      id: 1,
+      id: '1',
       name: '石头',
+      description: '制造武器的材料，需要学习「初级武器制造」才能使用这种材料',
+      divisionName: '材料',
+      groupName: '制造',
    },
    {
-      id: 2,
-      name: '野草',
+      id: '2',
+      name: '小草',
+      description: '制造草药的材料，需要学习「初级草药制造」才能使用这种材料',
+      divisionName: '材料',
+      groupName: '制造',
+   },
+   {
+      id: '3',
+      name: '青草药膏',
+      description: '最初级的草药，敷在伤处，可以恢复20点生命',
+      effects: [['hp', 20]],
+      divisionName: '消耗品',
+      groupName: '生命',
+   },
+   {
+      id: '4',
+      name: '精力药水',
+      description: '恢复5点精力',
+      effects: [['ep', 5]],
+      divisionName: '消耗品',
+      groupName: '精力',
+   },
+   {
+      id: '5',
+      name: '简易石器',
+      description: '最初级的武器，攻击力+5，命中率增加1%',
+      effects: [
+         ['attack', 5],
+         ['hitRate', 0.01],
+      ],
+      divisionName: '装备',
+      groupName: '武器',
    },
 ];
 
 const Main = (props) => {
+   // 玩家怪物状态
    const [player, setPlayer] = useState(copyObject(playerData));
    const [currentEnemy, setCurrentEnemy] = useState(copyObject(allEnemies[0]));
    const [battleConsequence, setBattleConsequence] = useState();
@@ -198,15 +217,16 @@ const Main = (props) => {
       let playerCopy = copyObject(player);
 
       // 经验值计算，精力扣除
-      stateModifier(playerCopy, 'exp', enemy.rewards.exp);
-      stateModifier(playerCopy, 'ep', -5);
+      playerCopy = numberModifier(playerCopy, 'exp', enemy.exp);
+      playerCopy = numberModifier(playerCopy, 'ep', -enemy.ep);
 
       // 怪物掉落物品计算
       let materialsArray = [];
 
-      enemy.rewards.items.forEach((item) => {
+      enemy.items.forEach((item) => {
          if (Math.random() < item.probability) {
-            // packageModifier(playerCopy, item.id, 1, allItems);
+            packageModifier(playerCopy, item.id, 1, allItems);
+            console.log(playerCopy);
             const itemIndex = allItems.findIndex(
                (allItems) => allItems.id === item.id
             );
@@ -218,9 +238,6 @@ const Main = (props) => {
             });
          }
       });
-
-      // console.log(battleConsequence);
-      // console.log(playerCopy);
 
       // 设置battleConsequence
       setBattleConsequence({
