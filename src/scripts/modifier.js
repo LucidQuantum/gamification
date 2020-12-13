@@ -1,3 +1,5 @@
+import { itemsMuseum } from './data';
+
 // 数值修改器：输入对象、选项、数值，返回一个新的object(value可以为负数)
 export const numberModifier = (creatureObject, option, value) => {
    switch (option) {
@@ -87,9 +89,9 @@ export const numberModifier = (creatureObject, option, value) => {
    return creatureObject;
 };
 
-// 物品修改器：输入对象、id、number、itemsMuseum，输出一个新的对象(number可以是负数)
-export const packageModifier = (player, id, number, itemsMuseum) => {
-   // 在itemsMuseum中找到这个物品
+// 物品修改器：输入玩家、id、number，直接修改对象(number可以是负数)
+export const packageModifier = (player, id, number) => {
+   // 在玩家包裹中找到这个物品
    const playerIndex = player.package.findIndex((item) => item.id === id);
 
    if (number < 0) {
@@ -114,16 +116,46 @@ export const packageModifier = (player, id, number, itemsMuseum) => {
       // 玩家背包中有没有这个物品？
       if (playerIndex === -1) {
          // - 如果没有，那么在itemsMuseum中寻找这个物品，并且在玩家的背包中加入
-         const museumIndex = itemsMuseum.findIndex((item) => item.id === id);
-         const item = itemsMuseum[museumIndex];
-         player.package.push({ ...item, number: number });
+         player.package.push({ id: id, number: number });
       } else if (playerIndex >= 0) {
          // - 如果有，那么直接加上number就好
          player.package[playerIndex].number += number;
       }
    }
-
-   return player;
 };
 
-// 怪物掉落物品计算，输入
+// 通过id在itemsMuseum中寻找item
+const findItemById = (id) => {
+   const index = itemsMuseum.findIndex((item) => item.id === id);
+   return itemsMuseum[index];
+};
+
+// 打败怪物后，计算材料掉落，并将变化作为array返回
+export const enemyRewardsCalculator = (player, currentEnemy) => {
+   let materialsDifferenceArray = [];
+
+   currentEnemy.rewards.forEach((item) => {
+      let number = 0;
+
+      // 计算一个材料掉落的数量
+      for (let i = 0; i < item.number; i++) {
+         if (Math.random() < item.probability) {
+            number++;
+         }
+      }
+      console.log(number);
+
+      // 如果获得材料的话
+      if (number > 0) {
+         // 修改背包数量
+         packageModifier(player, item.id, number);
+         // 将变化写入array
+         materialsDifferenceArray.push({
+            name: findItemById(item.id).name,
+            number: number,
+         });
+      }
+   });
+
+   return materialsDifferenceArray;
+};

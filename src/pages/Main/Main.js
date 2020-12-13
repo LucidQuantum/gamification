@@ -7,7 +7,11 @@ import Battle from '../../components/organisms/Battle/Battle';
 import BattleConsequence from '../../components/organisms/BattleConsequence/BattleConsequence';
 import copyObject from '../../scripts/copyObject';
 
-import { numberModifier, packageModifier } from '../../scripts/modifier';
+import {
+   numberModifier,
+   packageModifier,
+   enemyRewardsCalculator,
+} from '../../scripts/modifier';
 import { damageCalculatorAtoB } from '../../scripts/calculator';
 
 const playerData = {
@@ -62,20 +66,12 @@ const allEnemies = [
       rewards: [
          {
             id: '1',
-            name: '石头',
-            description:
-               '制造武器的材料，需要学习「初级武器制造」才能使用这种材料',
-            divisionName: '材料',
-            groupName: '制造',
+            number: 10,
             probability: 0.3,
          },
          {
             id: '2',
-            name: '小草',
-            description:
-               '制造草药的材料，需要学习「初级草药制造」才能使用这种材料',
-            divisionName: '材料',
-            groupName: '制造',
+            number: 10,
             probability: 0.7,
          },
       ],
@@ -104,58 +100,16 @@ const allEnemies = [
       ep: 10,
       rewards: [
          {
-            id: 1,
+            id: '1',
+            number: 10,
             probability: 0.7,
          },
          {
-            id: 2,
+            id: '2',
+            number: 10,
             probability: 0.3,
          },
       ],
-   },
-];
-
-const allItems = [
-   {
-      id: '1',
-      name: '石头',
-      description: '制造武器的材料，需要学习「初级武器制造」才能使用这种材料',
-      divisionName: '材料',
-      groupName: '制造',
-   },
-   {
-      id: '2',
-      name: '小草',
-      description: '制造草药的材料，需要学习「初级草药制造」才能使用这种材料',
-      divisionName: '材料',
-      groupName: '制造',
-   },
-   {
-      id: '3',
-      name: '青草药膏',
-      description: '最初级的草药，敷在伤处，可以恢复20点生命',
-      effects: [['hp', 20]],
-      divisionName: '消耗品',
-      groupName: '生命',
-   },
-   {
-      id: '4',
-      name: '精力药水',
-      description: '恢复5点精力',
-      effects: [['ep', 5]],
-      divisionName: '消耗品',
-      groupName: '精力',
-   },
-   {
-      id: '5',
-      name: '简易石器',
-      description: '最初级的武器，攻击力+5，命中率增加1%',
-      effects: [
-         ['attack', 5],
-         ['hitRate', 0.01],
-      ],
-      divisionName: '装备',
-      groupName: '武器',
    },
 ];
 
@@ -203,7 +157,7 @@ const Main = (props) => {
       } else if (currentEnemyCopy.state.hp <= 0) {
          currentEnemyCopy.state.hp = '死亡';
          setEnemyDeath(true);
-         playerCopy = rewardsCalculator(currentEnemyCopy);
+         rewardsCalculator(playerCopy, currentEnemyCopy);
       }
 
       // 更新状态
@@ -212,49 +166,30 @@ const Main = (props) => {
    };
 
    // 怪物奖励计算
-   const rewardsCalculator = (enemy) => {
-      // 深Copy
-      let playerCopy = copyObject(player);
-
+   const rewardsCalculator = (player, enemy) => {
       // 经验值计算，精力扣除
-      playerCopy = numberModifier(playerCopy, 'exp', enemy.exp);
-      playerCopy = numberModifier(playerCopy, 'ep', -enemy.ep);
+      player = numberModifier(player, 'exp', enemy.exp);
+      player = numberModifier(player, 'ep', -enemy.ep);
 
-      // 怪物掉落物品计算
-      let materialsArray = [];
-
-      enemy.items.forEach((item) => {
-         if (Math.random() < item.probability) {
-            packageModifier(playerCopy, item.id, 1, allItems);
-            console.log(playerCopy);
-            const itemIndex = allItems.findIndex(
-               (allItems) => allItems.id === item.id
-            );
-
-            // 增加了多少物品？
-            materialsArray.push({
-               name: allItems[itemIndex].name,
-               number: 1,
-            });
-         }
-      });
+      // 掉落物品计算，返回这次打怪获得了什么材料
+      const materialsDifferenceArray = enemyRewardsCalculator(player, enemy);
 
       // 设置battleConsequence
       setBattleConsequence({
          title: '>>战胜<<',
          exp: {
-            before: playerCopy.state.exp - enemy.rewards.exp,
-            add: enemy.rewards.exp,
-            after: playerCopy.state.exp,
+            before: player.state.exp - enemy.exp,
+            add: enemy.exp,
+            after: player.state.exp,
          },
-         materials: materialsArray,
+         materials: materialsDifferenceArray,
          ep: {
-            current: playerCopy.state.ep,
-            max: playerCopy.state.maxEp,
+            current: player.state.ep,
+            max: player.state.maxEp,
          },
       });
 
-      return playerCopy;
+      console.log(player);
    };
 
    // 转换开关
@@ -282,6 +217,7 @@ const Main = (props) => {
             <Header />
 
             {/* 战斗页面 */}
+
             <Battle
                player={player}
                currentEnemy={currentEnemy}
